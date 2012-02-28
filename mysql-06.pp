@@ -7,16 +7,19 @@ package { ["mysql.x86_64",
     ensure => present,
 }
 
-service { "mysqld":
-    ensure => running,
+file { "my.cnf":
+    path    => '/etc/my.cnf',
+    mode    => '0644',
+    owner   => 'root',
+    group   => 'root',
+    require => Package["mysql-server.x86_64"],
 }
 
-file { "my.cnf":
-    path  => '/etc/my.cnf',
-    mode  => '0644',
-    owner => 'root',
-    group => 'root',
+service { "mysqld":
+    ensure  => running,
+    require => File["my.cnf"]
 }
+
 
 file { ["/mysql",
         "/mysql/data",
