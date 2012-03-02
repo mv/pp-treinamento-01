@@ -20,13 +20,15 @@ yumrepo { "10gen_32bits":
 }
 
 package { "mongo-client":
-    name   => "mongo-10gen.x86_64",
-    ensure => installed,
+    name    => "mongo-10gen.x86_64",
+    ensure  => installed,
+    require => Yumrepo["10gen"],
 }
 
 package { "mongo-server":
-    name   => "mongo-10gen-server.x86_64",
-    ensure => installed,
+    name    => "mongo-10gen-server.x86_64",
+    ensure  => installed,
+    require => Yumrepo["10gen"],
 }
 
 file { "/etc/mongod.conf":

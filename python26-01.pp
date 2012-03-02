@@ -21,5 +21,6 @@ yumrepo { "epel":
 ### package
 package { "python26":
     ensure => present,
+    require => Yumrepo["epel"],
 }
 

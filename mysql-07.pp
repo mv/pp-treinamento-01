@@ -11,6 +11,9 @@ package { "mysql-server":
 file { "my.cnf":
     path    => "/etc/my.cnf",
     ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
     require => Package["mysql-server"],
 }
 
